@@ -1,0 +1,19 @@
+{
+  "workspace": {
+    "id": "8bfcf99e-33cb-423a-8e63-ae9dd7c45b92"
+  },
+  "entities": {
+    "collections": [],
+    "environments": [],
+    "specs": [
+      "../src/graphql/schema/pagination.graphql",
+      "../src/graphql/schema/query.graphql",
+      "../src/graphql/schema/subscription.graphql",
+      "../src/graphql/schema/tweet.graphql",
+      "../src/graphql/schema/user.graphql"
+    ],
+    "flows": [],
+    "globals": [],
+    "mocks": []
+  }
+}

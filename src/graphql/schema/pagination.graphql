@@ -1,0 +1,26 @@
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type UserConnection {
+  edges: [UserEdge!]!
+  pageInfo: PageInfo!
+}
+
+type UserEdge {
+  node: User!
+  cursor: String!
+}
+
+type TweetConnection {
+  edges: [TweetEdge!]!
+  pageInfo: PageInfo!
+}
+
+type TweetEdge {
+  node: Tweet!
+  cursor: String!
+}

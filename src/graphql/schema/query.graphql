@@ -1,0 +1,9 @@
+type Query {
+  user(id: ID!): User
+  tweet(id: ID!): Tweet
+  userByUsername(username: String!): User
+  users(first: Int, after: String): UserConnection!
+  tweets(first: Int, after: String): TweetConnection!
+  feed(userId: ID!, first: Int, after: String): TweetConnection!
+  tweetsByUser(userId: ID!, first: Int, after: String): TweetConnection!
+}

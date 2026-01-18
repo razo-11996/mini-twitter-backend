@@ -1,0 +1,578 @@
+{
+  "info": {
+    "_postman_id": "6c301fc7-bff0-4de9-ba4f-5cdc12eb338e",
+    "name": "Mini Twitter Backend",
+    "description": "GraphQL API for Mini Twitter Clone - Use Postman's GraphQL mode!",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Queries",
+      "item": [
+        {
+          "name": "Get All Users",
+          "id": "ff1cbed0-b1ed-4748-aa14-2fd23fb18a4b",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query GetAllUsers {\n  users(first: 3) {\n    edges {\n      node {\n        id\n        username\n        email\n        name\n        bio\n        createdAt\n      }\n      cursor\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}",
+                "variables": ""
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/graphql",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "graphql"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User by ID",
+          "id": "9cd9c9a7-d064-4c12-83e9-a9b4fb5a4966",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query GetUser($userId: ID!) {\n  user(id: $userId) {\n    id\n    username\n    email\n    name\n    bio\n    createdAt\n    followers(first: 10) {\n      edges {\n        node {\n          id\n          username\n        }\n        cursor\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n    }\n    following(first: 10) {\n      edges {\n        node {\n          id\n          username\n        }\n        cursor\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n    }\n    tweets(first: 10) {\n      edges {\n        node {\n          id\n          content\n          createdAt\n        }\n        cursor\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n    }\n  }\n}",
+                "variables": "{\n  \"userId\": \"{{userId}}\"\n}"
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/graphql",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "graphql"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User by Username",
+          "id": "a873c792-f984-4c45-a751-8142ae633259",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query GetUserByUsername($username: String!) {\n  userByUsername(username: $username) {\n    id\n    username\n    email\n    name\n    bio\n  } \n}",
+                "variables": "{\n  \"username\": \"{{username}}\"\n}\n"
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/graphql",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "graphql"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Tweets",
+          "id": "4a6a8fcf-47fd-4861-b664-a6975e917aa4",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query GetAllTweets {\n  tweets(first: 10) {\n    edges {\n      node {\n        id\n        content\n        author {\n          id\n          username\n          name\n        }\n        createdAt\n        likes\n        retweets\n      }\n      cursor\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}",
+                "variables": ""
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/graphql",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "graphql"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Tweet by ID",
+          "id": "3ad92011-5df2-48de-9983-13d0bbde8b50",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query GetTweet($tweetId: ID!) {\n  tweet(id: $tweetId) {\n    id\n    content\n    author {\n      id\n      username\n      name\n    }\n    createdAt\n    likes\n    retweets\n    likedBy(first: 10) {\n      edges {\n        node {\n          id\n          username\n        }\n        cursor\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n    }\n  }\n}",
+                "variables": "{\n  \"tweetId\": \"4d5e3e7a-f1df-4c65-8757-e97a75750f35\"\n}"
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/graphql",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "graphql"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Tweets by User",
+          "id": "c20d2909-3858-4411-8d3b-5e9269d02835",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query GetTweetsByUser($userId: ID!) {\n  tweetsByUser(userId: $userId, first: 10) {\n    edges {\n      node {\n        id\n        content\n        createdAt\n        likes\n        retweets\n      }\n      cursor\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}",
+                "variables": "{\n  \"userId\": \"{{userId}}\"\n}"
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/graphql",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "graphql"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User Feed",
+          "id": "73dd4021-0da7-493e-9d42-d6a5ae39277d",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query GetFeed($userId: ID!) {\n  feed(userId: $userId) {\n    edges {\n      node {\n        id\n        content\n        author {\n          id\n          username\n          name\n        }\n        createdAt\n        likes\n        retweets\n      }\n      cursor\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}",
+                "variables": "{\n  \"userId\": \"{{userId}}\"\n}"
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/graphql",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "graphql"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "4d5bf265-2066-44d1-a1f8-a3fc666884ad"
+    },
+    {
+      "name": "Mutations",
+      "item": [
+        {
+          "name": "Create User",
+          "id": "e85ca078-cca0-4e58-9c43-70b3a45b6827",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation CreateUser {\n  createUser(input: {\n    username: \"muskspace\"\n    email: \"muskspace@example.com\"\n    name: \"Ilon Musk\"\n    bio: \"Something Cool\"\n  }) {\n    id\n    username\n    email\n    name\n    bio\n    createdAt\n  }\n}",
+                "variables": ""
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/graphql",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "graphql"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update User",
+          "id": "61a7c4b6-2738-4333-96d5-b9df50ddaf85",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation UpdateUser {\n  updateUser(id: \"user-id\", input: {\n    name: \"John Updated\"\n    bio: \"Updated bio\"\n  }) {\n    id\n    username\n    name\n    bio\n  }\n}",
+                "variables": ""
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/graphql",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "graphql"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Follow User",
+          "id": "21839e62-4471-458f-a2ac-9264039cebcb",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation FollowUser($userId: ID!, $followUserId: ID!) {\n  followUser(userId: $userId, followUserId: $followUserId) {\n    id\n    username\n    following {\n      id\n      username\n    }\n  }\n}",
+                "variables": "{\n    \"userId\": \"385b271b-43bd-47fc-9b61-7be9874d12eb\",\n    \"followUserId\": \"{{userId}}\"\n}"
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/graphql",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "graphql"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Unfollow User",
+          "id": "2ce8cebf-35f4-442b-8ad5-e8cc6efbc6e0",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation UnfollowUser {\n  unfollowUser(userId: \"user1-id\", unfollowUserId: \"user2-id\") {\n    id\n    username\n    following {\n      id\n      username\n    }\n  }\n}",
+                "variables": ""
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/graphql",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "graphql"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Tweet",
+          "id": "dd73fdc9-2d9c-4be4-94bd-6290122732b3",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation CreateTweet($content: String!, $authorId: ID!) {\n  createTweet(\n    input: {\n      content: $content\n      authorId: $authorId\n    }\n  ) {\n    id\n    content\n    author {\n      id\n      username\n    }\n    createdAt\n    likes\n    retweets\n  }\n}\n",
+                "variables": "{\n  \"content\": \"One more tweet for today\",\n  \"authorId\": \"385b271b-43bd-47fc-9b61-7be9874d12eb\"\n}\n"
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/graphql",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "graphql"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Tweet",
+          "id": "c0504388-c910-42c5-b4ef-19efc91d2bbb",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation DeleteTweet {\n  deleteTweet(id: \"tweet-id\")\n}",
+                "variables": ""
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/graphql",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "graphql"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Like Tweet",
+          "id": "9684a40c-d9f3-40d4-8f38-24a3c690ace8",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation LikeTweet($tweetId: ID!, $userId: ID!) {\n  likeTweet(tweetId: $tweetId, userId: $userId) {\n    id\n    content\n    likes\n    likedBy {\n      id\n      username\n    }\n  }\n}\n",
+                "variables": "{\n  \"tweetId\": \"4d5e3e7a-f1df-4c65-8757-e97a75750f35\",\n  \"userId\": \"8d0b136c-6dfd-491e-8a46-b9a63fcf325c\"\n}\n"
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/graphql",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "graphql"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Unlike Tweet",
+          "id": "2d1f997a-6815-49b5-b705-04b30b846ae1",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation UnlikeTweet($tweetId: ID!, $userId: ID!) {\n  unlikeTweet(tweetId: $tweetId, userId: $userId) {\n    id\n    content\n    likes\n  }\n}",
+                "variables": "{\n  \"tweetId\": \"e5e069ab-7c67-4049-8c1c-298f3dcd585f\",\n  \"userId\": \"385b271b-43bd-47fc-9b61-7be9874d12eb\"\n}\n"
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/graphql",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "graphql"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Retweet",
+          "id": "43c18472-3cc3-4648-b6c1-2dd9576e97c2",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation Retweet($tweetId: ID!, $userId: ID!) {\n  retweet(tweetId: $tweetId, userId: $userId) {\n    id\n    content\n    retweets\n  }\n}",
+                "variables": "{\n    \"tweetId\": \"a7ca451e-1a90-449d-9e62-a6944d6a4ad7\",\n    \"userId\": \"8d0b136c-6dfd-491e-8a46-b9a63fcf325c\"\n}"
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/graphql",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "graphql"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "8ba7b5e9-89c5-4ea5-b06d-3a0e35f175e1"
+    },
+    {
+      "name": "Subscriptions",
+      "item": [
+        {
+          "name": "Subscribe to New Tweets",
+          "id": "a5c06712-fb0a-41f9-84d3-05acbc7819ad",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "ws://localhost:4000/graphql",
+              "protocol": "ws",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "graphql"
+              ]
+            },
+            "description": "Note: Postman supports WebSocket subscriptions. Use the WebSocket request type and send this message:\n\n{  \n\"type\": \"start\",  \n\"id\": \"1\",  \n\"payload\": {  \n\"query\": \"subscription { tweetCreated { id content createdAt likes retweets authorId } }\"  \n}  \n}\n\nThen create a tweet using the Create Tweet mutation to see the subscription trigger."
+          },
+          "response": []
+        },
+        {
+          "name": "Subscribe to Tweet Likes",
+          "id": "22517773-6e6d-4d5e-8963-a1d74a9f4b6b",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "ws://localhost:4000/graphql",
+              "protocol": "ws",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "graphql"
+              ]
+            },
+            "description": "WebSocket subscription. Send:\n\n{\n  \"type\": \"start\",\n  \"id\": \"2\",\n  \"payload\": {\n    \"query\": \"subscription($tweetId: ID!) { tweetLiked(tweetId: $tweetId) { id content likes } }\",\n    \"variables\": {\n      \"tweetId\": \"your-tweet-id-here\"\n    }\n  }\n}\n\nThen like that tweet to see the subscription trigger."
+          },
+          "response": []
+        },
+        {
+          "name": "Subscribe to New Tweets from Following",
+          "id": "94a4ebd1-bcba-43b2-98a6-b522e5d569d7",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "ws://localhost:4000/graphql",
+              "protocol": "ws",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "graphql"
+              ]
+            },
+            "description": "WebSocket subscription. Send:\n\n{\n  \"type\": \"start\",\n  \"id\": \"3\",\n  \"payload\": {\n    \"query\": \"subscription($userId: ID!) { newTweetFromFollowing(userId: $userId) { id content createdAt authorId } }\",\n    \"variables\": {\n      \"userId\": \"your-user-id-here\"\n    }\n  }\n}\n\nWhen someone you follow creates a tweet, you'll receive it in real-time."
+          },
+          "response": []
+        },
+        {
+          "name": "Subscribe to User Followed",
+          "id": "b80bd71c-633d-474e-ae99-3288ae6fbb41",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "ws://localhost:4000/graphql",
+              "protocol": "ws",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "graphql"
+              ]
+            },
+            "description": "WebSocket subscription. Send:\n\n{\n  \"type\": \"start\",\n  \"id\": \"4\",\n  \"payload\": {\n    \"query\": \"subscription($userId: ID!) { userFollowed(userId: $userId) { id username } }\",\n    \"variables\": {\n      \"userId\": \"your-user-id-here\"\n    }\n  }\n}\n\nWhen someone follows this user, you'll receive a notification in real-time."
+          },
+          "response": []
+        }
+      ],
+      "id": "7471b983-b6bb-4066-b108-1f22c741d574"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "5807fd40-9d67-4ce4-a161-89d17e71ba6e",
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "e82dda19-f43e-4e7f-930f-76c1d0c7b61d",
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "38286f80-44eb-4389-a2eb-ae2b4889bb3b",
+      "key": "userId",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}

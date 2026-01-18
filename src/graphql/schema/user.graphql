@@ -1,0 +1,30 @@
+type User {
+  id: ID!
+  bio: String
+  name: String
+  email: String!
+  username: String!
+  createdAt: String!
+  tweets(first: Int, after: String): TweetConnection!
+  followers(first: Int, after: String): UserConnection!
+  following(first: Int, after: String): UserConnection!
+}
+
+input CreateUserInput {
+  bio: String
+  name: String
+  email: String!
+  username: String!
+}
+
+input UpdateUserInput {
+  bio: String
+  name: String
+}
+
+type Mutation {
+  createUser(input: CreateUserInput!): User!
+  followUser(userId: ID!, followUserId: ID!): User!
+  updateUser(id: ID!, input: UpdateUserInput!): User!
+  unfollowUser(userId: ID!, unfollowUserId: ID!): User!
+}

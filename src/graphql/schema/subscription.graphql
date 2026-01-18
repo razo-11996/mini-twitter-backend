@@ -1,0 +1,6 @@
+type Subscription {
+  tweetCreated: Tweet!
+  tweetLiked(tweetId: ID!): Tweet!
+  userFollowed(userId: ID!): User!
+  newTweetFromFollowing(userId: ID!): Tweet!
+}

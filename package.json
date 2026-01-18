@@ -1,0 +1,35 @@
+{
+  "name": "mini-twitter-backend",
+  "version": "1.0.0",
+  "description": "Mini Twitter clone backend using Apollo Server and Neo4j",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "format": "prettier --write \"src/**/*.js\"",
+    "format:check": "prettier --check \"src/**/*.js\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/server": "^4.9.0",
+    "@graphql-tools/load": "^8.0.0",
+    "@graphql-tools/graphql-file-loader": "^8.0.0",
+    "@graphql-tools/schema": "^10.0.0",
+    "@graphql-tools/merge": "^9.0.0",
+    "graphql": "^16.8.1",
+    "graphql-tag": "^2.12.6",
+    "graphql-subscriptions": "^2.0.0",
+    "graphql-ws": "^5.14.2",
+    "ws": "^8.16.0",
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "body-parser": "^1.20.2",
+    "neo4j-driver": "^5.14.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "prettier": "^3.1.0"
+  }
+}

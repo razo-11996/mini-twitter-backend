@@ -1,0 +1,22 @@
+type Tweet {
+  id: ID!
+  likes: Int!
+  author: User!
+  retweets: Int!
+  content: String!
+  likedBy(first: Int, after: String): UserConnection!
+  createdAt: String!
+}
+
+input CreateTweetInput {
+  authorId: ID!
+  content: String!
+}
+
+type Mutation {
+  deleteTweet(id: ID!): Boolean!
+  retweet(tweetId: ID!, userId: ID!): Tweet!
+  likeTweet(tweetId: ID!, userId: ID!): Tweet!
+  createTweet(input: CreateTweetInput!): Tweet!
+  unlikeTweet(tweetId: ID!, userId: ID!): Tweet!
+}
